@@ -14,7 +14,8 @@ require_once DOKU_INC . 'lib/plugins/news/scripts/rss.php';
 $newsfeed_ini = DOKU_INC . 'lib/plugins/news/scripts/newsfeed.ini';
 global $conf;
 global $newsChannelTitle;
-global $newsChannelDescription;	
+global $newsChannelDescription;
+global $newsChannelTtl;	
 global $newsFeedURL,$INPUT;
 $newsFeedURL = "";
 $refresh=false;
@@ -55,6 +56,7 @@ else {
     $which = isset($ini_array[$title]) ? $title : 'default';
     $newsChannelTitle = $ini_array[$which]['title'];
     $newsChannelDescription = $ini_array[$which]['description'] ;
+    $newsChannelTtl = $ini_array[$which]['ttl'];
 }
 
 	if(isset($conf['plugin']['news'])) {
@@ -67,6 +69,9 @@ else {
 		}
 		if(!$newsChannelDescription && isset($conf['plugin']['news']['desc'])) {
 			$newsChannelDescription = $conf['plugin']['news']['desc'];
+		}
+		if(!$newsChannelTtl && isset($conf['plugin']['news']['ttl'])) {
+			$newsChannelTtl = $conf['plugin']['news']['ttl'];
 		}
 	 	if(isset($conf['plugin']['news']['url'])) {
 			$newsFeedURL = $conf['plugin']['news']['url'];			
